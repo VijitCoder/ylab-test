@@ -3,8 +3,6 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'homeUrl' => env('HOME_URL'),
-    //'controllerNamespace' => 'app\controllers',
-    //'defaultRoute' => 'site/index',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -41,14 +39,15 @@ $config = [
             ],
         ],
         'db' => require __DIR__ . '/db.php',
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //'<controller>/<id:\d+>' => '<controller>/view',
+               // '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
-        */
+        
         'assetManager' => [
             'class' => yii\web\AssetManager::class,
             'linkAssets' => true,
