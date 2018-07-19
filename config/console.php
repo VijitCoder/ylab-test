@@ -1,8 +1,4 @@
 <?php
-
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
-
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
@@ -24,9 +20,9 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => require __DIR__ . '/db.php',
     ],
-    'params' => $params,
+    'params' => require __DIR__ . '/params.php',
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
