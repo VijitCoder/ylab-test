@@ -13,12 +13,9 @@ use yii\console\ExitCode;
  * Seeding database with Faker
  *
  * Note: products bounds only to categories/providers which seeded in the current action. But it is possible to change
- * this behavior (not implemented).
+ * this behavior (not implemented). 
  * 
- * Examples:
- * 
- * php yii seed               // default action. Clear tables, create 20 categories, 20 providers and 20 products 
- * php yii seed false 10 0 40 // No cleanup, add 10 more categories, no providers, 40 products
+ * Quantity of each entity hardcoded - 20. It is not good, but enough for test job. 
  */
 class SeedController extends Controller
 {
@@ -34,20 +31,17 @@ class SeedController extends Controller
      * Seed all tables at once. See possible keys in the function signature.
      *
      * @param bool $cleanup       need to cleanup tables before seeding
-     * @param int  $categoriesQty categories quantity
-     * @param int  $providersQty  providers quantity
-     * @param int  $productsQty   products quantity
      * @return int Exit code
      */
-    public function actionIndex($cleanup = true, $categoriesQty = 20, $providersQty = 20, $productsQty = 20)
+    public function actionIndex($cleanup = true)
     {
         if ($cleanup) {
             $this->cleanup();
         }
 
-        $categoriesIds = $this->seedCategories($categoriesQty);
-        $providersIds = $this->seedProviders($providersQty);
-        $this->seedProducts($productsQty, $categoriesIds, $providersIds);
+        $categoriesIds = $this->seedCategories(20);
+        $providersIds = $this->seedProviders(20);
+        $this->seedProducts(20, $categoriesIds, $providersIds);
 
         return ExitCode::OK . PHP_EOL;
     }
