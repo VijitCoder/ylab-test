@@ -34,7 +34,8 @@ class Category extends ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['title', 'description'], 'string', 'max' => 45],
+            [['title'], 'string', 'max' => 45],
+            [['description'], 'string'],
             [['sequence',], 'integer'],
             [['is_visible'], 'boolean'],
             [['created_at', 'updated_at'], 'safe'],
