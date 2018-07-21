@@ -14,7 +14,7 @@ class m180719_052610_products_create extends Migration
             'title'       => $this->string(45)->notNull()->comment('Product name'),
             'description' => $this->text()->comment('Product description'),
             'price'       => $this->decimal(5, 2)->commeny('Price'),
-            'image'       => $this->string(100)->comment('Relative URL to the product image'),
+            'image'       => $this->string(100)->comment('URL to the product image'),
             'category_id' => $this->integer()->unsigned()->notNull(),
             'provider_id' => $this->integer()->unsigned()->notNull(),
             'created_at'  => $this->timestamp()->notNull() . ' DEFAULT CURRENT_TIMESTAMP',

@@ -72,7 +72,7 @@ class Product extends ActiveRecord
             'title'       => 'Product',
             'description' => 'Description',
             'price'       => 'Price',
-            'image'       => 'Relative URL to the product image',
+            'image'       => 'URL to the product image',
             'category_id' => 'Category ID',
             'provider_id' => 'Provider ID',
             'created_at'  => 'Created At',
