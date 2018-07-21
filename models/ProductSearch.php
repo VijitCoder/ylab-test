@@ -19,6 +19,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'category_id', 'provider_id'], 'integer'],
+            ['price', 'match', 'pattern' => '/^\d+(\.\d{1,2})?$/'],
             [['title', 'description', 'image', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -64,6 +65,7 @@ class ProductSearch extends Product
         // grid filtering conditions
         $query->andFilterWhere([
             'id'          => $this->id,
+            'price'       => $this->price,
             'category_id' => $this->category_id,
             'provider_id' => $this->provider_id,
             'created_at'  => $this->created_at,
