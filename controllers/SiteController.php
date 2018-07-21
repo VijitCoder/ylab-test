@@ -1,27 +1,24 @@
 <?php
 namespace app\controllers;
 
+use app\models\ProductSearch;
+use Yii;
 use yii\base\InvalidArgumentException;
+use yii\base\UnknownMethodException;
 use yii\web\Controller;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use yii\web\ErrorAction;
 
 /**
  * Main controller of the project
  */
 class SiteController extends Controller
 {
-
     /**
      * {@inheritdoc}
      */
     public function actions()
     {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
+        return ['error' => ['class' => ErrorAction::class]];
     }
 
     /**
@@ -32,6 +29,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new ProductSearch;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }
