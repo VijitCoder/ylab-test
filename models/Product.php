@@ -10,6 +10,7 @@ use yii\db\ActiveRecord;
  * @property int      $id
  * @property string   $title        Product name
  * @property string   $description  Product description
+ * @property float    $price        Price
  * @property string   $image        Relative URL to the product image
  * @property int      $category_id
  * @property int      $provider_id
@@ -35,23 +36,24 @@ class Product extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['title', 'category_id', 'provider_id'], 'required'],
-            [['title'], 'string', 'max' => 45],
-            [['description'], 'string'],
+            [['title', 'price', 'category_id', 'provider_id'], 'required'],
+            ['title', 'string', 'max' => 45],
+            ['description', 'string'],
+            ['price', 'match', 'pattern' => '/^\d+(\.\d{1,2})?$/'],
             [['category_id', 'provider_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['image'], 'string', 'max' => 100],
             [
                 ['category_id'],
                 'exist',
-                'skipOnError'     => true,
+                'skipOnError'     => false,
                 'targetClass'     => Category::class,
                 'targetAttribute' => ['category_id' => 'id'],
             ],
             [
                 ['provider_id'],
                 'exist',
-                'skipOnError'     => true,
+                'skipOnError'     => false,
                 'targetClass'     => Provider::class,
                 'targetAttribute' => ['provider_id' => 'id'],
             ],
@@ -67,6 +69,7 @@ class Product extends ActiveRecord
             'id'          => 'ID',
             'title'       => 'Product name',
             'description' => 'Product description',
+            'price'       => 'Price',
             'image'       => 'Relative URL to the product image',
             'category_id' => 'Category ID',
             'provider_id' => 'Provider ID',

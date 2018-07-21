@@ -125,6 +125,7 @@ class SeedController extends Controller
             $product->id = null;
             $product->title = $this->faker->word;
             $product->description = $this->faker->sentence;
+            $product->price = $this->faker->randomFloat(2,1,999);
             $product->image = $this->faker->imageUrl($width = 640, $height = 480);
             $product->category_id = $this->faker->randomElement($categoriesIds);
             $product->provider_id = $this->faker->randomElement($providersIds);
