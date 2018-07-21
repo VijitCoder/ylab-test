@@ -5,8 +5,6 @@
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
-use yii\grid\ActionColumn;
-use yii\grid\SerialColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -18,6 +16,16 @@ $this->title = 'Products summary table';
     <h1><?= Html::encode($this->title) ?></h1>
     
     <?php Pjax::begin(); ?>
+
+    <div class="form-group form-inline pull-right">
+        <label>Group by</label>
+        <?= Html::dropDownList(
+                'groupBy',
+                'provider',
+                ['provider' => 'providers', 'category' => 'categories'],
+                ['class' => 'form-control',]
+            ); ?>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

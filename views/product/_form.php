@@ -23,7 +23,12 @@ use yii\widgets\ActiveForm;
     <?= $form
         ->field($model, 'category_id')->dropDownList(
             $categories,
-            ['prompt' => 'Select category...']
+            [
+                'prompt'           => 'Select category...',
+                'class'            => 'selectpicker',
+                'data-live-search' => 'true',
+                'data-size'        => 12,
+            ]
         )
         ->label('Category');
     ?>
@@ -31,7 +36,12 @@ use yii\widgets\ActiveForm;
     <?= $form
         ->field($model, 'provider_id')->dropDownList(
             $providers,
-            ['prompt' => 'Select provider...']
+            [
+                'prompt'           => 'Select provider...',
+                'class'            => 'selectpicker',
+                'data-live-search' => 'true',
+                'data-size'        => 12,
+            ]
         )
         ->label('Provider');
     ?>
