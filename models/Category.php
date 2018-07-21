@@ -19,6 +19,8 @@ use yii\db\ActiveRecord;
  */
 class Category extends ActiveRecord
 {
+    use TimestampTrait;
+
     /**
      * {@inheritdoc}
      */

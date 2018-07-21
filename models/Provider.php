@@ -17,6 +17,8 @@ use yii\db\ActiveRecord;
  */
 class Provider extends ActiveRecord
 {
+    use TimestampTrait;
+
     /**
      * {@inheritdoc}
      */

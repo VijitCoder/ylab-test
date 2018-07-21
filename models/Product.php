@@ -22,6 +22,8 @@ use yii\db\ActiveRecord;
  */
 class Product extends ActiveRecord
 {
+    use TimestampTrait;
+    
     /**
      * {@inheritdoc}
      */
