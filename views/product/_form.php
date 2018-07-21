@@ -20,9 +20,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList(
+        $categories,
+        ['prompt' => 'Select category...']
+    ); ?>
 
-    <?= $form->field($model, 'provider_id')->textInput() ?>
+    <?= $form->field($model, 'provider_id')->dropDownList(
+        $providers,
+        ['prompt' => 'Select provider...']
+    ); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

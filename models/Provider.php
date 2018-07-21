@@ -47,7 +47,7 @@ class Provider extends ActiveRecord
     {
         return [
             'id'         => 'ID',
-            'title'      => 'Provider name',
+            'title'      => 'Provider',
             'sequence'   => 'Order of show',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

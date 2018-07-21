@@ -113,7 +113,7 @@ abstract class CRUDController extends Controller
      * @return mixed
      * @throws InvalidArgumentException
      */
-    private function renewEntity(ActiveRecord $model, string $view)
+    protected function renewEntity(ActiveRecord $model, string $view)
     {
         $data = Yii::$app->request->post();
 

@@ -51,8 +51,8 @@ class Category extends ActiveRecord
     {
         return [
             'id'          => 'ID',
-            'title'       => 'Category name',
-            'description' => 'Category description',
+            'title'       => 'Category',
+            'description' => 'Description',
             'sequence'    => 'Order of show',
             'is_visible'  => 'Visibility',
             'created_at'  => 'Created At',
