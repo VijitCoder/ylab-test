@@ -1,11 +1,32 @@
 # YLab - Тест
 
-*Тут будет описание согласно задачи теста*
+Нужно создать в корне проекта файл [.env]:
 
-План:
+```
+YII_DEBUG       = true
+YII_ENV         = dev
 
-- Пример .env файла (они все игнорируются Гитом)
-- composer install
-- Как запуститься в Docker. Сайт будет доступен по localhost:8081. Порт сменил намеренно, т.к. на машине уже есть нормальный веб-сервер на 80-м порту, без всяких докеров.
-- накатить миграции: `yii migrate`
-- seeding ?
+DB_DSN           = mysql:host=ylab-test-db;dbname=ylab_test
+DB_USERNAME      = user
+DB_PASSWORD      = pass
+
+HOME_URL = http://localhost:8081/
+```
+
+Запуск проекта в докере:
+
+```
+docker-compose build
+docker-compose up -d
+composer install
+```
+
+Сайт будет доступен по адресу http://localhost:8081/ Порт сменил намерено, т.к. на машине уже есть нормальный веб-сервер на 80-м порту, без всяких докеров.
+
+Накатить миграции и заполнить данными:
+
+```
+docker-compose exec app bash
+php yii migrate
+php yii seed
+```

@@ -13,7 +13,7 @@ class m180719_052610_products_create extends Migration
             'id'          => $this->bigPrimaryKey()->unsigned(),
             'title'       => $this->string(45)->notNull()->comment('Product name'),
             'description' => $this->text()->comment('Product description'),
-            'price'       => $this->decimal(5, 2)->commeny('Price'),
+            'price'       => $this->decimal(5, 2)->comment('Price'),
             'image'       => $this->string(100)->comment('URL to the product image'),
             'category_id' => $this->integer()->unsigned()->notNull(),
             'provider_id' => $this->integer()->unsigned()->notNull(),

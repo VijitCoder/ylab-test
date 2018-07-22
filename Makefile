@@ -1,10 +1,7 @@
-all: rebuild run
+all: build run
 
 build:
-	docker-compose build --no-cache --build-arg hostUID=`id -u` --build-arg hostGID=`id -g` web
-
-rebuild:
-	docker-compose build --build-arg hostUID=`id -u` --build-arg hostGID=`id -g` web
+	docker-compose build --no-cache web
 
 run:
 	docker-compose -p ylab up -d web
