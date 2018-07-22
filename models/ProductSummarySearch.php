@@ -30,19 +30,19 @@ class ProductSummarySearch extends Product
     /**
      * Attribute "groupBy" value. See self::GRP_BY_*
      *
-     * @var int 
+     * @var int
      */
     public $groupBy;
 
     /**
      * The name of the attribute associated with "groupBy" selection in the form. It is needed out there for Grid View.
-     * 
+     *
      * category.title | provider.title
      *
      * @var string
      */
     public $groupAttribute;
-    
+
     public function attributes()
     {
         return array_merge(parent::attributes(), ['category.title', 'provider.title']);
@@ -74,15 +74,12 @@ class ProductSummarySearch extends Product
         $query = Product::find();
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-
-            'pagination' => [
-                'pageSize' => Yii::$app->params['perPage'],
-            ],
+            'query'      => $query,
+            'pagination' => ['pageSize' => Yii::$app->params['perPage'],],
         ]);
 
         $this->load($params);
-        // It ignores by load() for some reason.
+        // This attribute ignores by load() for some reason.
         $this->groupBy = $params['groupBy'] ?? static::GRP_BY_PROVIDER;
 
         if (!$this->validate()) {
@@ -100,7 +97,7 @@ class ProductSummarySearch extends Product
         $this->addTitleRelation('category', $dataProvider, $query);
         $this->addTitleRelation('provider', $dataProvider, $query);
 
-        
+
         $this->groupAttribute = $this->getGroupAttributeName();
         $query->orderBy($this->groupAttribute);
 

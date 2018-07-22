@@ -56,14 +56,46 @@ $this->title = 'Products summary table';
                 'attribute' => 'id',
                 'options'   => ['width' => '70px',],
             ],
-            'title',
+            [
+                'attribute' => 'title',
+                'format'    => 'raw',
+                'value'     => function ($data) {
+                    return Html::a(
+                        $data->title, 
+                        ['product/update', 'id' => $data->id], 
+                        ['title' => 'Edit product', 'class' => 'no-pjax']
+                    );
+                },
+            ],
             [
                 'attribute' => 'price',
                 'options'   => ['width' => '100px',],
             ],
-            'category.title',
-            'provider.title',
+            [
+                'attribute' => 'category.title',
+                'format'    => 'raw',
+                'value'     => function ($data) {
+                    return Html::a(
+                        $data->category->title, 
+                        ['category/update', 'id' => $data->category->id], 
+                        ['title' => 'Edit category', 'class' => 'no-pjax']
+                    );
+                },
+            ],
+            [
+                'attribute' => 'provider.title',
+                'format'    => 'raw',
+                'value'     => function ($data) {
+                    return Html::a(
+                        $data->provider->title, 
+                        ['provider/update', 'id' => $data->provider->id], 
+                        ['title' => 'Edit provider', 'class' => 'no-pjax']
+                    );
+                },
+            ],
         ],
     ]); ?>
+    
     <?php Pjax::end(); ?>
+    
 </div>
