@@ -28,12 +28,21 @@ class ProductSummarySearch extends Product
     ];
 
     /**
-     * Attribute "groupBy"
+     * Attribute "groupBy" value. See self::GRP_BY_*
      *
-     * @var
+     * @var int 
      */
     public $groupBy;
 
+    /**
+     * The name of the attribute associated with "groupBy" selection in the form. It is needed out there for Grid View.
+     * 
+     * category.title | provider.title
+     *
+     * @var string
+     */
+    public $groupAttribute;
+    
     public function attributes()
     {
         return array_merge(parent::attributes(), ['category.title', 'provider.title']);
@@ -74,7 +83,7 @@ class ProductSummarySearch extends Product
 
         $this->load($params);
         // It ignores by load() for some reason.
-        $this->groupBy = $params['groupBy'] ?? static::GRP_BY_PROVIDER; 
+        $this->groupBy = $params['groupBy'] ?? static::GRP_BY_PROVIDER;
 
         if (!$this->validate()) {
             $query->where('0=1');
@@ -91,9 +100,21 @@ class ProductSummarySearch extends Product
         $this->addTitleRelation('category', $dataProvider, $query);
         $this->addTitleRelation('provider', $dataProvider, $query);
 
-        $query->orderBy($this->groupEntity[$this->groupBy] . '.title');
+        
+        $this->groupAttribute = $this->getGroupAttributeName();
+        $query->orderBy($this->groupAttribute);
 
         return $dataProvider;
+    }
+
+    /**
+     * Get name of grouping attribute
+     *
+     * @return string
+     */
+    private function getGroupAttributeName(): string
+    {
+        return $this->groupEntity[$this->groupBy] . '.title';
     }
 
     /**
@@ -115,12 +136,12 @@ class ProductSummarySearch extends Product
         ];
 
         $table = $map[$property];
-        $field = $property . '.title';
+        $attr = $property . '.title';
 
         // Sort
-        $dataProvider->sort->attributes[$field] = [
-            'asc'  => [$field => SORT_ASC],
-            'desc' => [$field => SORT_DESC],
+        $dataProvider->sort->attributes[$attr] = [
+            'asc'  => [$attr => SORT_ASC],
+            'desc' => [$attr => SORT_DESC],
         ];
 
         $query->joinWith([
@@ -130,6 +151,6 @@ class ProductSummarySearch extends Product
         ]);
 
         // Search
-        $query->andFilterWhere(['LIKE', $field, $this->getAttribute($field)]);
+        $query->andFilterWhere(['LIKE', $attr, $this->getAttribute($attr)]);
     }
 }

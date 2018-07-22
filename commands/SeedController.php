@@ -4,7 +4,6 @@ namespace app\commands;
 use app\models\Category;
 use app\models\Product;
 use app\models\Provider;
-use Yii;
 use yii\base\Module;
 use yii\console\Controller;
 use yii\console\ExitCode;
@@ -80,7 +79,7 @@ class SeedController extends Controller
             $category->id = null;
             $category->title = $this->faker->word;
             $category->description = $this->faker->sentence;
-            $category->sequence = $i;
+            $category->sequence = $this->faker->numberBetween(1, $qty);
             $category->save();
             $ids[] = $category->id;
         }
@@ -101,7 +100,7 @@ class SeedController extends Controller
             $provider->setIsNewRecord(true);
             $provider->id = null;
             $provider->title = $this->faker->company;
-            $provider->sequence = $i;
+            $provider->sequence = $this->faker->numberBetween(1, $qty);
             $provider->save();
             $ids[] = $provider->id;
         }

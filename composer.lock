@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab4001bb5770419ac3eea6c012b934fb",
-    "content-hash": "c9b22c547ee561849174bd30aacbb6e9",
+    "hash": "f87348d5ab0e997050d5377a9ab74a1b",
+    "content-hash": "9be30038eea5bd62aa894ed5bd6fde36",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -22,6 +22,29 @@
                 "shasum": null
             },
             "require": {
+                "bower-asset/jquery": ">=1.9.1,<4.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-select",
+            "version": "v1.13.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/snapappointments/bootstrap-select.git",
+                "reference": "7f495a11e66d925531e7d32ed6da1013a4cebf0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/snapappointments/bootstrap-select/zipball/7f495a11e66d925531e7d32ed6da1013a4cebf0a",
+                "reference": "7f495a11e66d925531e7d32ed6da1013a4cebf0a",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.0.0",
                 "bower-asset/jquery": ">=1.9.1,<4.0"
             },
             "type": "bower-asset",

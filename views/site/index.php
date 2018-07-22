@@ -6,6 +6,8 @@
  */
 
 use app\models\ProductSummarySearch;
+use app\widgets\SpanDataColumn;
+use app\widgets\SpanGridView;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -46,7 +48,7 @@ $this->title = 'Products summary table';
 
     </div>
 
-    <?= GridView::widget([
+    <?= SpanGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel'  => $searchModel,
         'columns'      => [
