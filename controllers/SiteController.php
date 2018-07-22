@@ -1,10 +1,9 @@
 <?php
 namespace app\controllers;
 
-use app\models\ProductSearch;
+use app\models\ProductSummarySearch;
 use Yii;
 use yii\base\InvalidArgumentException;
-use yii\base\UnknownMethodException;
 use yii\web\Controller;
 use yii\web\ErrorAction;
 
@@ -29,7 +28,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch;
+        $searchModel = new ProductSummarySearch;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

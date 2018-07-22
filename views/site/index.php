@@ -1,30 +1,49 @@
 <?php
 /**
  * @var $this         yii\web\View
- * @var $searchModel  app\models\ProductSearch
+ * @var $searchModel  app\models\ProductSummarySearch
  * @var $dataProvider yii\data\ActiveDataProvider
  */
 
+use app\models\ProductSummarySearch;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Products summary table';
 ?>
 <div class="site-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    
+
     <?php Pjax::begin(); ?>
 
-    <div class="form-group form-inline pull-right">
-        <label>Group by</label>
-        <?= Html::dropDownList(
+    <div class="category-search">
+
+        <?php $form = ActiveForm::begin([
+            'action'  => ['/'],
+            'method'  => 'get',
+            'options' => [
+                'data-pjax' => 1,
+            ],
+        ]); ?>
+
+        <div class="form-group form-inline pull-right">
+            <label>Group by</label>
+            <?= Html::dropDownList(
                 'groupBy',
-                'provider',
-                ['provider' => 'providers', 'category' => 'categories'],
-                ['class' => 'form-control',]
+                $searchModel->groupBy,
+                [
+                    ProductSummarySearch::GRP_BY_PROVIDER => 'providers',
+                    ProductSummarySearch::GRP_BY_CATEGORY => 'categories',
+                ],
+                ['class' => 'form-control', 'onchange' => 'this.form.submit()']
             ); ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
 
     <?= GridView::widget([
