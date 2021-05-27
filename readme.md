@@ -18,15 +18,15 @@ HOME_URL = http://localhost:8081/
 ```
 docker-compose build
 docker-compose up -d
-composer install
 ```
 
 Сайт будет доступен по адресу http://localhost:8081/ Порт сменил намерено, т.к. на машине уже есть нормальный веб-сервер на 80-м порту, без всяких докеров.
 
-Накатить миграции и заполнить данными:
+Поставить вендоры, накатить миграции и заполнить данными:
 
 ```
 docker-compose exec app bash
+composer install
 php yii migrate
 php yii seed
 ```
